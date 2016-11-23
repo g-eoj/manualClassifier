@@ -8,12 +8,14 @@ thumbsDirectory =  "./thumbs/";
 outDirectory = "./output/";
 originalsDirectory = "./originals/";
 orgOutDirectory = "./orgOutput/";
+offset = 0;
 
 def initDirectories():
 	listing = [f for f in listdir(outDirectory) if not isfile(join(outDirectory, f))]
 	return listing
 
 listing = initDirectories();
+print "loading listing ", listing
 
 def handleInt(what):
 	if(what.isdigit()):
@@ -37,7 +39,13 @@ def handleInput(currentImage, what):
 	print "moved to directory ",outDirectory + what + "/" + currentImage
 
 def main():
-	for filename in os.listdir(thumbsDirectory):
+	print "getting filename list..."
+	filenames = os.listdir(thumbsDirectory)
+	print "sorting filenames"
+	filenames.sort()
+	for index in range(offset, len(filenames)):
+		print "filename index ", index
+		filename = filenames[index];
 		if filename.endswith(".JPG"):
 			print "processing ", filename
 			pylab.ion()
@@ -51,6 +59,7 @@ def main():
 			handleInput(filename, what)
 
 main()
+
 
 
 
