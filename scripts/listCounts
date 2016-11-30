@@ -1,0 +1,10 @@
+#!/bin/bash
+sumTotal=0
+for file in ./output/*
+do
+	curCount=`ls $file | wc -l`
+	sumTotal=$(($sumTotal+$curCount))
+	echo $curCount, $file
+done
+
+echo $sumTotal, "Total"
