@@ -1,13 +1,12 @@
 import numpy as np
 import pylab
 import os
+import sys
 from os import listdir
 from os.path import isfile, join
 
-thumbsDirectory =  "./thumbs/";
 outDirectory = "./output/";
-originalsDirectory = "./originals/";
-orgOutDirectory = "./orgOutput/";
+inDirectory = sys.argv[1];
 offset = 0;
 listing = []
 
@@ -43,12 +42,12 @@ def handleInput(currentImage, what):
 	checkListing(what)
 	listing = initDirectories();
 	print "classified as ", what
-	os.rename(thumbsDirectory + currentImage, outDirectory + what + "/" + currentImage)
+	os.rename(inDirectory + currentImage, outDirectory + what + "/" + currentImage)
 	print "moved to directory ",outDirectory + what + "/" + currentImage
 
 def main():
 	print "getting filename list..."
-	filenames = os.listdir(thumbsDirectory)
+	filenames = os.listdir(inDirectory)
 	print "sorting filenames"
 	filenames.sort()
 	index = offset-1;
@@ -59,11 +58,11 @@ def main():
 		if filename.endswith(".JPG"):
 			print "processing ", filename
 			pylab.ion()
-			img=pylab.imread(thumbsDirectory + filename);
+			img=pylab.imread(inDirectory + filename);
 			pylab.imshow(img);
 			pylab.draw();
 			showAllInListing();
-			what = raw_input('what is it?');
+			what = raw_input('what is it? ');
 			if(what == 'q'):
 				break;
 			elif(what == 'n'):
