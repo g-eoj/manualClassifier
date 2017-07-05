@@ -5,9 +5,15 @@ import sys
 from os import listdir
 from os.path import isfile, join
 
-outDirectory = "./output/";
-inDirectory = sys.argv[1];
-cameraName = "UpperTrailCamera";
+
+absOutPath = ""
+outDirectory = absOutPath + "output/"
+
+absInPath = ""
+cameraName = sys.argv[1]
+cameraSubFolder = sys.argv[2]
+inDirectory = absInPath + cameraName + '/' + cameraSubFolder + '/'
+
 offset = 0;
 listing = []
 
