@@ -7,6 +7,7 @@ from os.path import isfile, join
 
 outDirectory = "./output/";
 inDirectory = sys.argv[1];
+cameraName = "UpperTrailCamera";
 offset = 0;
 listing = []
 
@@ -42,8 +43,9 @@ def handleInput(currentImage, what):
 	checkListing(what)
 	listing = initDirectories();
 	print "classified as ", what
-	os.rename(inDirectory + currentImage, outDirectory + what + "/" + currentImage)
-	print "moved to directory ",outDirectory + what + "/" + currentImage
+        name = outDirectory + what + "/" + cameraName + "_" + currentImage
+	os.rename(inDirectory + currentImage, name)
+	print "moved to directory ",name
 
 def main():
 	print "getting filename list..."
